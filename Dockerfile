@@ -2,7 +2,7 @@ FROM node:16.14.2 as build-stage
 
 ARG BACKEND_URL
 WORKDIR /app
-COPY package*.json .
+COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN REACT_APP_BACKEND_URL=${BACKEND_URL} npm run build
