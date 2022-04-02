@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 function App() {
    	const [data, setData] = useState([]);
 
 	useEffect(() => {
-		fetch("$BACKEND_URL")
+		fetch(backendUrl)
 		 .then((res) => res.json())
       		 .then((result) => setData(result))
       		 .catch((err) => console.log("error"));
