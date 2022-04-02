@@ -38,11 +38,6 @@ jobs:
           echo '${{ secrets.GCP_CREDENTIALS }}' > key.json
           cat key.json | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev/
       - name: Build and Push Container
-        env: 
-            CLOUD_SQL_USERNAME: ${{ secrets.SQL_USERNAME }}
-            CLOUD_SQL_PASSWORD: ${{ secrets.SQL_PASSWORD }}
-            CLOUD_SQL_DATABASE_NAME: ${{ secrets.SQL_DATABASE_NAME }}
-            CLOUD_SQL_CONNECTION_NAME: ${{ secrets.SQL_CONNECTION_NAME }}
         run: |-
           docker build --build-arg BACKEND_URL=${{ secrets.BACKEND_URL }} -t "${{ env.GAR_LOCATION }}/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}" ./
           docker push "${{ env.GAR_LOCATION }}/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}"
