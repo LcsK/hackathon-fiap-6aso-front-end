@@ -20,6 +20,7 @@ jobs:
         - name: Docker Login
           env:
             GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+            BACKEND_URL: ${{ secrets.BACKEND }}
           run: | 
             echo '${{ secrets.GOOGLE_CREDENTIALS }}' > key.json
             cat key.json | docker login -u _json_key --password-stdin https://us-central1-docker.pkg.dev/
